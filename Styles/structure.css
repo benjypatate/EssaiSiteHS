@@ -1,28 +1,29 @@
 #global{
-    width: 800px;
-    margin: 0 auto;
+    //width: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 #tete{
-    background:#bbbbbb;
+    background:#ae0000;
 }
 
 #corps{
-    background:#dddddd;
+    //background:#ffffff;
 }
 
 
 #menu{
-    float:left;
-    width:180px;
-    background:#bbbbbb;
+    //float:left;
+    width:100%;
+    background:#dbdbdb;
 }
 
 #contenu{
-    width:600px;
+    width:100%;
     min-height:400px;
-    margin-left:200px;
-    background-color: #cccccc;
+    //margin-left:200px;
+    //background-color: #ffffff;
 }
 
 #menu ul {
@@ -31,6 +32,6 @@
 
 
 #pied {
-    background:#bbbbbb;
+    background:#dbdbdb;
 
 }
