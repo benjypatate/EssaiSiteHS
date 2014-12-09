@@ -27,7 +27,6 @@ function carousel(){
     ob_start();
     ?>
         <div class="container">
-			<h1>Circular Content Carousel<span>with jQuery</span></h1>
 			<div id="ca-container" class="ca-container">
 				<div class="ca-wrapper">
 					<div class="ca-item ca-item-1">
