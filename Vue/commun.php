@@ -256,8 +256,9 @@ function carousel(){
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-		<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+		<!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>-->
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+                <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
 		<!-- the jScrollPane script -->
 		<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
 		<script type="text/javascript" src="js/jquery.contentcarousel.js"></script>
@@ -277,6 +278,7 @@ function entete($titre){
         <h1>
             <?php echo($titre);?>
         </h1>
+            <?php echo('url(../images/banniere_haut.png)') ?>
     <?php
     $entete = ob_get_clean();
     return $entete;
@@ -288,8 +290,6 @@ function entete($titre){
 function menu($etape){
     ob_start();
     ?>
-        <h2>Navigation</h2>
-        <br/>
         <ul>
             <?php 
                 if($etape=="accueil"){
@@ -298,15 +298,25 @@ function menu($etape){
                     echo('<li><a href="index.php?cible=accueil">Accueil</a></li>');
                 }
                 
-                for($i=1;$i<4;$i++){
-                    if($etape=="etape".$i){
-                        echo('<li><a href="index.php?cible=etape'.$i.'"><span class="selection">Étape '.$i.'</span></a></li>');
-                    } else {
-                        echo('<li><a href="index.php?cible=etape'.$i.'">Étape '.$i.'</a></li>');
-                    }
+                if($etape=="recherche"){
+                    echo('<li><a href="index.php?cible=recherche"><span class="selection">Recherche</span></a></li>');
+                } else {
+                    echo('<li><a href="index.php?cible=recherche">Recherche</a></li>');
                 }
                 
-                echo '<br/><li><a href="index.php?cible=deconnexion">Deconnexion</a></li>';
+                if($etape=="moncompte"){
+                    echo('<li><a href="index.php?cible=moncompte"><span class="selection">Mon Compte</span></a></li>');
+                } else {
+                    echo('<li><a href="index.php?cible=moncompte">Mon Compte</a></li>');
+                }
+                
+                if($etape=="forum"){
+                    echo('<li><a href="index.php?cible=forum"><span class="selection">Forum</span></a></li>');
+                } else {
+                    echo('<li><a href="index.php?cible=forum">Forum</a></li>');
+                }
+                
+                echo '<li><a href="index.php?cible=deconnexion">Deconnexion</a></li>';
             ?>
         </ul>
     <?php

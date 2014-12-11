@@ -13,21 +13,25 @@
     </head>
         <div id="global">
             <div id="tete">
-                <?php echo($entete); ?>
-            </div>
-            
-            <hr/>    
+                <div id="banniere">
+                    <div id="logo">
+                        <?php echo($logo); ?>
+                    </div>
+                    <div id="menu">
+                        <?php echo($menu); ?>
+                    </div> 
+                </div>
+                <div id="logo">
+                    <?php echo($logo); ?>
+                </div>
+                 
+            </div> 
             
             <div id="corps">
-                <div id="menu">
-                    <?php echo($menu); ?>
-                </div>
                 <div id="contenu">
                     <?php echo($contenu); ?>
                 </div>
             </div>
-            
-            <hr />    
 
             <div id="pied">
                 <?php echo($pied); ?>
