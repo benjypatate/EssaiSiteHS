@@ -316,7 +316,7 @@ function menu($etape){
                     echo('<li><a href="index.php?cible=forum">Forum</a></li>');
                 }
                 
-                echo '<li><a href="index.php?cible=deconnexion">Deconnexion</a></li>';
+                //echo '<li><a href="index.php?cible=deconnexion">Deconnexion</a></li>';
             ?>
         </ul>
     <?php
@@ -335,6 +335,37 @@ function pied(){
     return $pied;
 }
 
+
+function sousmenucompte($sousetape){
+    ob_start();
+    ?>
+        <ul>
+            <?php 
+                if($sousetape=="mesinfos"){
+                    echo('<li><a href="index.php?cible=mesinfos"><span class="selection">Mes informations personnelles</span></a></li>');
+                } else {
+                    echo('<li><a href="index.php?cible=mesinfos">Mes informations personnelles</a></li>');
+                }
+                
+                if($sousetape=="meslog"){
+                    echo('<li><a href="index.php?cible=meslog"><span class="selection">Mes logements</span></a></li>');
+                } else {
+                    echo('<li><a href="index.php?cible=meslog">Mes logements</a></li>');
+                }
+                
+                if($sousetape=="mamess"){
+                    echo('<li><a href="index.php?cible=mamess"><span class="selection">Ma messagerie</span></a></li>');
+                } else {
+                    echo('<li><a href="index.php?cible=mamess">Ma messagerie</a></li>');
+                }
+                
+                //echo '<li><a href="index.php?cible=deconnexion">Deconnexion</a></li>';
+            ?>
+        </ul>
+    <?php
+    $menu = ob_get_clean();
+    return $menu;
+}
 
 
 ?>

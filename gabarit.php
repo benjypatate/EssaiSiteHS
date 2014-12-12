@@ -18,7 +18,8 @@
                         <?php echo($logo); ?>
                     </div>
                     <div id="menu">
-                        <?php echo($menu); ?>
+                        <?php echo($menu);
+                        echo ($sousmenu); ?>
                     </div> 
                 </div>
                 <div id="logo">
