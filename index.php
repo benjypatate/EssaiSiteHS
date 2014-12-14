@@ -15,6 +15,12 @@
                 include("Vue/recherche.php");
             } else if ($_GET['cible'] == "moncompte"){
                 include("Vue/moncompte.php");
+            } else if ($_GET['cible'] == "mesmess"){
+                include("Vue/mesmess.php");
+            } else if ($_GET['cible'] == "meslog"){
+                include("Vue/meslog.php");
+            } else if ($_GET['cible'] == "inscrlog"){
+                include("Vue/inscrlog.php");
             } else if ($_GET['cible'] == "forum"){
                 include("Vue/forum.php");
             }

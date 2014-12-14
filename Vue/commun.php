@@ -290,7 +290,7 @@ function entete($titre){
 function menu($etape){
     ob_start();
     ?>
-        <ul>
+        <ul class="menu">
             <?php 
                 if($etape=="accueil"){
                     echo('<li><a href="index.php?cible=accueil"><span class="selection">Accueil</span></a></li>');
@@ -342,9 +342,9 @@ function sousmenucompte($sousetape){
         <ul>
             <?php 
                 if($sousetape=="mesinfos"){
-                    echo('<li><a href="index.php?cible=mesinfos"><span class="selection">Mes informations personnelles</span></a></li>');
+                    echo('<li><a href="index.php?cible=moncompte"><span class="selection">Mes informations personnelles</span></a></li>');
                 } else {
-                    echo('<li><a href="index.php?cible=mesinfos">Mes informations personnelles</a></li>');
+                    echo('<li><a href="index.php?cible=moncompte">Mes informations personnelles</a></li>');
                 }
                 
                 if($sousetape=="meslog"){
@@ -353,10 +353,10 @@ function sousmenucompte($sousetape){
                     echo('<li><a href="index.php?cible=meslog">Mes logements</a></li>');
                 }
                 
-                if($sousetape=="mamess"){
-                    echo('<li><a href="index.php?cible=mamess"><span class="selection">Ma messagerie</span></a></li>');
+                if($sousetape=="mesmess"){
+                    echo('<li><a href="index.php?cible=mesmess"><span class="selection">Ma messagerie</span></a></li>');
                 } else {
-                    echo('<li><a href="index.php?cible=mamess">Ma messagerie</a></li>');
+                    echo('<li><a href="index.php?cible=mesmess">Ma messagerie</a></li>');
                 }
                 
                 //echo '<li><a href="index.php?cible=deconnexion">Deconnexion</a></li>';
@@ -368,4 +368,135 @@ function sousmenucompte($sousetape){
 }
 
 
-?>
+function ajoutlog(){
+    ob_start();
+    ?>
+    <h1>Inscription d'un nouveau logement :</h1>
+    <?php
+    
+        //Connexion à la base de donnée
+        include (Modele/connexion.php);
+        
+        //Vérifier si le formulaire a été envoyé
+        if(empty($_POST)) {
+                echo(formlog());
+                
+        } else {
+                // Vérifier qu'il n'y a pas d'erreurs
+                $error = array();
+                if (empty($_POST['adresse'])) {
+                        $error["adresse"] = "Il n'y a pas d'adresse";
+                        echo ($error['adresse']);
+                } 
+                if (empty($_POST['ville'])) {
+                        $error["ville"] = array("Il n'y a pas de ville");
+                } 
+                if (empty($_POST['taille'])) {
+                        $error["taille"] = array("Vous n'avez pas précisé la taille");
+                } 
+                if(count($error)>0) {
+                    echo(formlog());
+                }
+                if(count($error)==0) { // Insertion du formulaire ds la bdd
+                $coucou="1";
+                $req = $bdd->prepare('INSERT INTO appart(adresse, ville, taille, nombrepiece, nbrepers, iduser) VALUES(?, ?, ?, ?, ?, ?)');
+                $req->execute(array(
+                        $_POST['adresse'], 
+                        $_POST['ville'], 
+                        $_POST['taille'], 
+                        $_POST['nombrepiece'],
+                        $_POST['personne'],
+                        $coucou
+                        ));
+                echo 'Votre appartement a bien été enregistré' ;
+                }
+        }
+
+    $ajoutlog = ob_get_clean();
+    return $ajoutlog;
+}
+    
+function formlog(){
+    ob_start();
+    global $error;
+    ?>
+    <form method="post" action="index.php?cible=inscrlog"> <!--<form method="post" action="reception.php" enctype="multipart/form-data">-->
+    <!-- Vérification erreur -->
+    <?php if (isset($error["adresse"])&&!empty($error["adresse"])) { ?> <!-- si il y a une erreur et que la variable error associée à nomE existe -->
+
+        <div class="error"><?php echo $error["adresse"] ?></div> <!-- affiche l'erreur -->
+    <?php } ?>
+
+    <label for="adresse">Adresse</label><br/>
+    <!-- Ajout du champ prérempli -->
+    <input type="texte" name="adresse" value="<?php (isset($_POST["adresse"])&&!empty($_POST["adresse"]))? $_POST["nomE"]: "";?>"><br />
+    <!--//ligne précédente rajoute la variable nomI si le champ avait été rempli auparavant.-->
+
+    <label for="ville">Ville :</label><br />
+    <input type="text" name="ville" /><br /><br />
+    <label for="taille">Taille du logement (en m²) :</label><br />
+    <input type="text" name="taille" /><br /><br />
+    <label for="nombrepiece">Combien de pièces y a-t-il dans votre appartement ?<br />
+        <select name="nombrepiece">
+        <option value="1" selected="selected">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15 ou +</option>
+        </select> <br /><br />
+    <label for="personne">Combien de personnes pouvez-vous acceuillir ?<br />
+        <select name="personne">
+        <option value="1" selected="selected">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15 ou +</option>
+        </select> <br /><br />
+    <label for="description">Description du logement :</label></br>
+    <textarea name="description" rows="8" cols="45">
+    Votre Description
+    </textarea> <br />
+    <p>Autorisez vous dans votre logement :</p>
+
+    Les fumeurs
+    <input type="radio" name="fumeurs" value="oui" id="oui" checked="checked" /> <label for="oui">Oui</label>
+    <input type="radio" name="fumeurs" value="non" id="non" /> <label for="non">Non</label><br />
+
+    Les animaux
+    <input type="radio" name="animaux" value="oui" id="oui" checked="checked" /> <label for="oui">Oui</label>
+    <input type="radio" name="animaux" value="non" id="non" /> <label for="non">Non</label><br />
+
+    Les enfants
+    <input type="radio" name="enfants" value="oui" id="oui" checked="checked" /> <label for="oui">Oui</label>
+    <input type="radio" name="enfants" value="non" id="non" /> <label for="non">Non</label><br /></br>
+    <!-- <label for="photo1">Ajoutez une photo du logement :</label><br />
+    <input type="file" name="photo1" id="photo1"><br /><br /> -->
+    <input type="submit" value="Valider" />
+    </form>
+    </body>
+    </html>
+    
+    <?php
+    $formlog = ob_get_clean();
+    return $formlog;
+}
