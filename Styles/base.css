@@ -9,7 +9,7 @@ body {
 }
 
 
-a { color:black; }
+a { color:black; text-decoration: underline; }
 a:hover { text-decoration: underline; font-weight: bold; }
 
 
@@ -37,6 +37,7 @@ li{
 
 .selection {
     color: #dbdbdb;
+    text-decoration: underline;
 }
 
 ban {

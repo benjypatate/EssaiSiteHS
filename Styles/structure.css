@@ -3,6 +3,7 @@
     margin-left: 20px;
     margin-right: 20px;
     font-size:16px;
+    overflow: hidden;
 }
 
 #tete{
@@ -32,6 +33,7 @@
     //float:left;
     width:100%;
     //background:#dbdbdb;
+    margin-left:400px;
 }
 
 #sousmenu{
@@ -47,12 +49,12 @@
 
 #menu ul {
     list-style: none;
-    margin-left:400px;
+    //margin-left:400px;
     //text-align: right;
 }
 
 #menu li {
-    margin-left: 10px;
+    //margin-left: 10px;
     margin-right: 10px;
 }
 
